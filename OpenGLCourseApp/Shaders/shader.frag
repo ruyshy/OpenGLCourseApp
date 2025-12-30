@@ -1,8 +1,10 @@
 #version 330
+
 in vec4 vCol;
-out vec4 color;
+
+out vec4 colour;
 
 void main()
 {
-	color = vCol;
+	colour = vCol;
 }
