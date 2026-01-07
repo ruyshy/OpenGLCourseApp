@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-#include <iostream>
+
 
 Texture::Texture()
 {
@@ -11,7 +11,7 @@ Texture::Texture()
 	fileLocation = "";
 }
 
-Texture::Texture(const char* fileLoc)
+Texture::Texture(std::string fileLoc)
 {
 	textureID = 0;
 	width = 0;
@@ -20,17 +20,12 @@ Texture::Texture(const char* fileLoc)
 	fileLocation = fileLoc;
 }
 
-Texture::~Texture()
-{
-	ClearTexture();
-}
-
 void Texture::LoadTexture()
 {
 	unsigned char* texData = stbi_load(fileLocation.c_str(), &width, &height, &bitDepth, 0);
 	if (!texData)
 	{
-		std::cout << "Failed to find : " << fileLocation << std::endl;
+		printf("Failed to find: %s\n", fileLocation);
 		return;
 	}
 
@@ -64,4 +59,10 @@ void Texture::ClearTexture()
 	height = 0;
 	bitDepth = 0;
 	fileLocation = "";
+}
+
+
+Texture::~Texture()
+{
+	ClearTexture();
 }
